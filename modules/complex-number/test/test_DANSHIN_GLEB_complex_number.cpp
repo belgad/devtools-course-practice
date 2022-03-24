@@ -40,3 +40,37 @@ TEST(DanshinGlebComplexNumberTest, InequalityOperator) {
   auto second = ComplexNumber(3.0, 4.0);
   ASSERT_NE(first, second);
 }
+
+TEST(DanshinGlebComplexNumberTest, AdditionOperator) {
+  auto first = ComplexNumber(1.0, 2.0);
+  auto second = ComplexNumber(3.0, 4.0);
+  auto product = first + second;
+  ASSERT_EQ(product, ComplexNumber(4.0, 6.0));
+}
+
+TEST(DanshinGlebComplexNumberTest, SubtractionOperator) {
+  auto first = ComplexNumber(1.0, 2.0);
+  auto second = ComplexNumber(3.0, 4.0);
+  auto product = first - second;
+  ASSERT_EQ(product, ComplexNumber(-2.0, -2.0));
+}
+
+TEST(DanshinGlebComplexNumberTest, MultiplicationOperator) {
+  auto first = ComplexNumber(1.0, 2.0);
+  auto second = ComplexNumber(3.0, 4.0);
+  auto product = first * second;
+  ASSERT_EQ(product, ComplexNumber(-5.0, 10.0));
+}
+
+TEST(DanshinGlebComplexNumberTest, DivisionOperator) {
+  auto first = ComplexNumber(1.0, 2.0);
+  auto second = ComplexNumber(3.0, 4.0);
+  auto product = first / second;
+  ASSERT_EQ(product, ComplexNumber(0.44, 0.08));
+}
+
+TEST(DanshinGlebComplexNumberTest, DivisionByZeroError) {
+  auto first = ComplexNumber(1.0, 2.0);
+  auto second = ComplexNumber();
+  ASSERT_THROW(first / second, std::string);
+}
