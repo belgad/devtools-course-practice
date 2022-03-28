@@ -1,6 +1,7 @@
 // Copyright 2022 Gleb "belgad" Danshin
 
 #include <gtest/gtest.h>
+#include <string>
 
 #include "include/complex_number.h"
 
@@ -14,7 +15,7 @@ TEST(DanshinGlebComplexNumberTest, ParameterizedConstructor) {
 
 TEST(DanshinGlebComplexNumberTest, CopyConstructor) {
   auto origin = ComplexNumber();
-  ASSERT_NO_THROW(ComplexNumber(number_1));
+  ASSERT_NO_THROW(auto copy = ComplexNumber(origin));
 }
 
 TEST(DanshinGlebComplexNumberTest, AssignmentOperator) {
