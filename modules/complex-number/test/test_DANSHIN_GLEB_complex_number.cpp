@@ -14,8 +14,7 @@ TEST(DanshinGlebComplexNumberTest, ParameterizedConstructor) {
 }
 
 TEST(DanshinGlebComplexNumberTest, CopyConstructor) {
-  auto origin = ComplexNumber();
-  ASSERT_NO_THROW(auto copy = ComplexNumber(origin));
+  ASSERT_NO_THROW(ComplexNumber(ComplexNumber()));
 }
 
 TEST(DanshinGlebComplexNumberTest, AssignmentOperator) {
