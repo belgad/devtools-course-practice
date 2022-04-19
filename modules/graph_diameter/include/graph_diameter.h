@@ -9,11 +9,14 @@ class Graph {
   using Matrix = std::vector<Vector>;
  public:
   Graph();
-  Graph(size_t);
-  Graph(Matrix&);
+  explicit Graph(size_t);
+  explicit Graph(Matrix&);
+  size_t GetSize() const;
+  void SetSize(size_t);
+  void SetEdge(size_t, size_t, int);
  private:
   size_t graph_size_;
   Matrix weights_;
 };
 
-#endif // MODULES_GRAPH_DIAMETER_INCLUDE_GRAPH_DIAMETER_H_
+#endif  // MODULES_GRAPH_DIAMETER_INCLUDE_GRAPH_DIAMETER_H_
