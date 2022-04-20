@@ -40,6 +40,26 @@ TEST(GraphMemberFunctions, GetSizeEqualToSetted) {
   ASSERT_EQ(graph.GetSize(), new_size);
 }
 
+TEST(GraphMemberFunctions, DecreaseGraphSize) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 0, 0},
+     {1, 0, 0, 0},
+     {0, 0, 0, 1},
+     {0, 0, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_NO_THROW(graph.SetSize(2));
+}
+
+TEST(GraphMemberFunctions, IncreaseGraphSize) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 0, 0},
+     {1, 0, 0, 0},
+     {0, 0, 0, 1},
+     {0, 0, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_NO_THROW(graph.SetSize(6));
+}
+
 TEST(GraphMemberFunctions, SetEdgeNoThrow) {
   auto graph = Graph{};
   size_t first{0};
