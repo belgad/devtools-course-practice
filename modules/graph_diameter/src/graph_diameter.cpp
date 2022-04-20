@@ -5,6 +5,8 @@
 #include <queue>
 #include <vector>
 
+#include <iostream>
+
 Graph::Graph()
     : graph_size_(0),
       weights_(Matrix(0, Vector(0))) {}
@@ -39,4 +41,67 @@ void Graph::SetEdge(size_t first, size_t second, int weight) {
     this->SetSize(n + 1);
   }
   weights_[first][second] = weights_[second][first] = weight;
+}
+
+int Graph::FindDiameter() {
+  if (graph_size_ < 2) {
+    return 0;
+  }
+  std::vector<int> way_cost(graph_size_, -1);
+  std::queue<size_t> vertex_to_visit;
+
+  vertex_to_visit.push(static_cast<size_t>(0));
+  way_cost[0] = 0;
+  while (!vertex_to_visit.empty()) {
+    auto now = vertex_to_visit.front();
+    vertex_to_visit.pop();
+    for (size_t i = 0; i < graph_size_; ++i) {
+      if (weights_[now][i]) {
+        auto new_cost = way_cost[now] + weights_[now][i];
+        if (way_cost[i] == -1 || new_cost < way_cost[i]) {
+          way_cost[i] = new_cost;
+          vertex_to_visit.push(i);
+        }
+      }
+    }
+  }
+
+  int max_way = way_cost[1];
+  size_t max_way_index = 1;
+  for (size_t i = 2; i < graph_size_; ++i) {
+    if (way_cost[i] == -1) {
+      return -1;
+    }
+    if (way_cost[i] > max_way) {
+      max_way = way_cost[i];
+      max_way_index = i;
+    }
+  }
+  for (size_t i = 0; i < graph_size_; ++i) {
+    way_cost[i] = -1;
+  }
+
+  vertex_to_visit.push(max_way_index);
+  way_cost[max_way_index] = 0;
+  while (!vertex_to_visit.empty()) {
+    auto now = vertex_to_visit.front();
+    vertex_to_visit.pop();
+    for (size_t i = 0; i < graph_size_; ++i) {
+      if (weights_[now][i]) {
+        auto new_cost = way_cost[now] + weights_[now][i];
+        if (way_cost[i] == -1 || new_cost < way_cost[i]) {
+          way_cost[i] = new_cost;
+          vertex_to_visit.push(i);
+        }
+      }
+    }
+  }
+
+  max_way = way_cost[0];
+  for (size_t i = 1; i < graph_size_; ++i) {
+    if (way_cost[i] > max_way) {
+      max_way = way_cost[i];
+    }
+  }
+  return max_way;
 }

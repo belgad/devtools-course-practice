@@ -47,3 +47,53 @@ TEST(GraphMemberFunctions, SetEdgeNoThrow) {
   int weight{10};
   ASSERT_NO_THROW(graph.SetEdge(first, second, weight));
 }
+
+TEST(GraphMemberFunctions, FindDiameterEmptyGraphNoThrow) {
+  auto graph = Graph{};
+  ASSERT_NO_THROW(graph.FindDiameter());
+}
+
+TEST(GraphMemberFunctions, FindDiameterEmptyGraphCorrectAnswer) {
+  auto graph = Graph{};
+  ASSERT_EQ(0, graph.FindDiameter());
+}
+
+TEST(GraphMemberFunctions, FindDiameterNonConnectedGraphNoThrow) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 0, 0},
+     {1, 0, 0, 0},
+     {0, 0, 0, 1},
+     {0, 0, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_NO_THROW(graph.FindDiameter());
+}
+
+TEST(GraphMemberFunctions, FindDiameterNonConnectedGraphCorrectAnswer) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 0, 0},
+     {1, 0, 0, 0},
+     {0, 0, 0, 1},
+     {0, 0, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_EQ(-1, graph.FindDiameter());
+}
+
+TEST(GraphMemberFunctions, FindDiameterConnectedGraphNoThrow) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 1, 3},
+     {1, 0, 0, 3},
+     {1, 0, 0, 1},
+     {3, 3, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_NO_THROW(graph.FindDiameter());
+}
+
+TEST(GraphMemberFunctions, FindDiameterConnectedGraphCorrectAnswer) {
+  std::vector<std::vector<int>> weights =
+    {{0, 1, 1, 3},
+     {1, 0, 0, 3},
+     {1, 0, 0, 1},
+     {3, 3, 1, 0}};
+  auto graph = Graph(weights);
+  ASSERT_EQ(3, graph.FindDiameter());
+}
