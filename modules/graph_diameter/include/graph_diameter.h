@@ -14,6 +14,7 @@ class Graph {
   size_t GetSize() const;
   void SetSize(size_t);
   void SetEdge(size_t, size_t, int);
+  int FindDiameter();
  private:
   size_t graph_size_;
   Matrix weights_;
