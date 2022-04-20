@@ -2,6 +2,7 @@
 #include "include/graph_diameter.h"
 
 #include <algorithm>
+#include <queue>
 #include <vector>
 
 Graph::Graph()
@@ -34,7 +35,7 @@ void Graph::SetSize(size_t new_size) {
 
 void Graph::SetEdge(size_t first, size_t second, int weight) {
   auto n = std::max(first, second);
-  if (n > graph_size_) {
+  if (n >= graph_size_) {
     this->SetSize(n + 1);
   }
   weights_[first][second] = weights_[second][first] = weight;
