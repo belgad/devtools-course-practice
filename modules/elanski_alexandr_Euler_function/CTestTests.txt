@@ -56,3 +56,15 @@ add_test(NAME ${prefix}_run_with_right_and_wrong_arguments
 set_tests_properties(${prefix}_run_with_right_and_wrong_arguments PROPERTIES
     PASS_REGULAR_EXPRESSION "Error in argument 3"
     LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_negative_value
+    COMMAND ${APPLICATION} -123456)
+set_tests_properties(${prefix}_run_with_negative_value PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 1:\nnegative value"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_positive_and_negative_values
+    COMMAND ${APPLICATION} 57 -73 27 39 47)
+set_tests_properties(${prefix}_run_with_positive_and_negative_values PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 2:\nnegative value"
+    LABELS "${MODULE}")

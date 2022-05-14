@@ -15,7 +15,7 @@ std::string Application::operator()(int argc, const char* argv[]) {
     try {
       auto num = std::stoi(argv[i]);
       if (num <= 0) throw std::domain_error{"negative value"};
-      output += std::to_string(EulerFunction::Calculate(std::stoi(argv[i])));
+      output += std::to_string(EulerFunction::Calculate(num));
     } catch(std::exception& e) {
       std::cout << "Error in argument " << i << ":"
                 << std::endl
