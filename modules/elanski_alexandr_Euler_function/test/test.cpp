@@ -1,4 +1,4 @@
-﻿// Copyright 2022 Elanskiy Alexandr
+// Copyright 2022 Elanskiy Alexandr
 #include <gtest/gtest.h>
 
 #include "include/Euler_function.h"
